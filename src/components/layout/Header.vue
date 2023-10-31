@@ -1,6 +1,66 @@
 <template>
   <header class="sticky top-0 z-10 bg-white">
-    <div class="px-6 pt-3 shadow-sm">
+    <BasePadding class="border">
+      <div class="flex items-center justify-between">
+        <Logo fill="#ef4444" />
+        <BaseElevatedButton>
+          <div class="w-full h-full flex space-x-4 pl-3 items-center">
+            <span class="font-medium text-sm text-gray-800">Anywhere</span>
+            <span class="w-[1px] h-6 bg-gray-300"></span>
+
+            <span class="font-medium text-sm text-gray-800">Any week</span>
+            <span class="w-[1px] h-6 bg-gray-300"></span>
+            <span class="font-light text-sm text-gray-500">Any guests</span>
+            <span class="bg-[#ef4444] rounded-full p-3"><Search /></span>
+          </div>
+        </BaseElevatedButton>
+        <div class="flex space-x-2 items-center">
+          <BaseBasicButton class="h-full">
+            <span class="font-medium text-sm text-gray-700"
+              >Airbnb your home</span
+            >
+          </BaseBasicButton>
+          <v-btn fab flat icon size="small">
+            <World />
+          </v-btn>
+          <BaseElevatedButton>
+            <div class="flex space-x-3 pl-1 items-center">
+              <Menu />
+              <v-icon class="text-gray-600" size="large"
+                >mdi-account-circle</v-icon
+              >
+            </div>
+          </BaseElevatedButton>
+        </div>
+      </div>
+    </BasePadding>
+    <BasePadding class="pb-0 shadow-md">
+      <div class="flex items-center space-x-2">
+        <div
+          class="flex-1 flex items-center space-x-7 overflow-x-auto flex-nowrap scroll-smooth"
+        >
+          <Category v-for="category in categories" :key="category.url">
+            <img
+              :src="category.url"
+              alt=""
+              width="32"
+              height="32"
+              class="opacity-50 group-focus:opacity-100"
+            />
+            <span class="text-xs font-semibold">{{ category.title }}</span>
+          </Category>
+        </div>
+        <button
+          type="button"
+          class="px-3 py-2 border rounded-md flex items-center space-x-2"
+          @click="dialogFilter = true"
+        >
+          <Filter />
+          <span class="text-gray-500">filter</span>
+        </button>
+      </div>
+    </BasePadding>
+    <!-- <div class="px-6 pt-3 shadow-sm">
       <div class="flex items-center gap-3">
         <div
           class="flex-1 rounded-full border-[1px] shadow-md px-5 py-2 flex gap-4 items-center cursor-pointer"
@@ -122,10 +182,10 @@
           />
         </Category>
       </div>
-    </div>
+    </div> -->
   </header>
   <!-- search -->
-  <v-dialog
+  <!-- <v-dialog
     v-model="dialogSearch"
     fullscreen
     scrollable
@@ -209,36 +269,7 @@
                 />
                 <span class="mt-2 text-sm text-[#717171]">I'm flexible</span>
               </button>
-              <!-- <button
-                class="flex flex-col items-start justify-between w-28 text-start"
-              >
-                <img
-                  alt=""
-                  src="https://a0.muscache.com/pictures/f9ec8a23-ed44-420b-83e5-10ff1f071a13.jpg"
-                  class="w-full rounded-md border overflow-hidden focus:!border-slate-950 hover:!border-slate-950"
-                />
-                <span class="mt-2 text-sm text-[#717171]">I'm flexible</span>
-              </button> -->
-              <!--<button
-                class="flex flex-col items-start justify-between w-28 text-start focus:bg-gray-100"
-              >
-                <img
-                  alt=""
-                  src="https://a0.muscache.com/pictures/f9ec8a23-ed44-420b-83e5-10ff1f071a13.jpg"
-                  class="w-full rounded-md border overflow-hidden focus:!border-slate-950 hover:!border-slate-950"
-                />
-                <span class="mt-2 text-sm text-[#717171]">I'm flexible</span>
-              </button>
-              <button
-                class="flex flex-col items-start justify-between w-28 text-start focus:bg-gray-100"
-              >
-                <img
-                  alt=""
-                  src="https://a0.muscache.com/pictures/f9ec8a23-ed44-420b-83e5-10ff1f071a13.jpg"
-                  class="w-full rounded-md border overflow-hidden focus:!border-slate-950 hover:!border-slate-950"
-                />
-                <span class="mt-2 text-sm text-[#717171]">I'm flexible</span>
-              </button> -->
+             
             </div>
           </div>
 
@@ -283,16 +314,13 @@
             </div>
             <span>Search</span>
           </div>
-          <!-- <span
-            class="px-6 py-2 text-lg font-bold text-white bg-pink-600 rounded-lg"
-            >Search</span
-          > -->
+          
         </div>
       </v-card-action>
     </v-card>
-  </v-dialog>
+  </v-dialog> -->
   <!-- filter -->
-  <v-dialog
+  <!-- <v-dialog
     v-model="dialogFilter"
     fullscreen
     scrollable
@@ -485,18 +513,164 @@
         </div>
       </v-card-action>
     </v-card>
-  </v-dialog>
+  </v-dialog> -->
 </template>
 
 <script setup>
+import Logo from "../../assests/icons/Logo.vue";
+import Menu from "../../assests/icons/Menu.vue";
+import Filter from "../../assests/icons/Filter.vue";
+import World from "../../assests/icons/World.vue";
+import Search from "../../assests/icons/Search.vue";
+import BaseBasicButton from "../base/BaseBasicButton.vue";
+import BasePadding from "../base/BasePadding.vue";
+import BaseElevatedButton from "../base/BaseElevatedButton.vue";
 import { ref } from "vue";
-import Category from "./Category.vue";
+import Category from "../Category.vue";
 
 const dialogFilter = ref(false);
 const dialogSearch = ref(false);
 const notifications = ref(false);
 const sound = ref(true);
 const widgets = ref(false);
+const categories = ref([
+  {
+    url: "https://a0.muscache.com/pictures/ed8b9e47-609b-44c2-9768-33e6a22eccb2.jpg",
+    title: "Iconic cities",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/7630c83f-96a8-4232-9a10-0398661e2e6f.jpg",
+    title: "Rooms",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/677a041d-7264-4c45-bb72-52bff21eb6e8.jpg",
+    title: "Lakefront",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/50861fca-582c-4bcc-89d3-857fb7ca6528.jpg",
+    title: "Design",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/6ad4bd95-f086-437d-97e3-14d12155ddfe.jpg",
+    title: "Countryside",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/c8e2ed05-c666-47b6-99fc-4cb6edcde6b4.jpg",
+    title: "Luxe",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/bcd1adc0-5cee-4d7a-85ec-f6730b0f8d0c.jpg",
+    title: "Beachfront",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/ee9e2a40-ffac-4db9-9080-b351efc3cfc4.jpg",
+    title: "Tropical",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/ca25c7f3-0d1f-432b-9efa-b9f5dc6d8770.jpg",
+    title: "Camping",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/89faf9ae-bbbc-4bc4-aecd-cc15bf36cbca.jpg",
+    title: "Domes",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg",
+    title: "OMG!",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/732edad8-3ae0-49a8-a451-29a8010dcc0c.jpg",
+    title: "Cabins",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/ddd13204-a5ae-4532-898c-2e595b1bb15f.jpg",
+    title: "Chef's kitchens",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg",
+    title: "Amazing pools",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/1b6a8b70-a3b6-48b5-88e1-2243d9172c06.jpg",
+    title: "Castles",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/3726d94b-534a-42b8-bca0-a0304d912260.jpg",
+    title: "Trending",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/3b1eb541-46d9-4bef-abc4-c37d77e3c21b.jpg",
+    title: "Amazing views",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/ed8b9e47-609b-44c2-9768-33e6a22eccb2.jpg",
+    title: "Iconic cities",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/7630c83f-96a8-4232-9a10-0398661e2e6f.jpg",
+    title: "Rooms",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/677a041d-7264-4c45-bb72-52bff21eb6e8.jpg",
+    title: "Lakefront",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/50861fca-582c-4bcc-89d3-857fb7ca6528.jpg",
+    title: "Design",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/6ad4bd95-f086-437d-97e3-14d12155ddfe.jpg",
+    title: "Countryside",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/c8e2ed05-c666-47b6-99fc-4cb6edcde6b4.jpg",
+    title: "Luxe",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/bcd1adc0-5cee-4d7a-85ec-f6730b0f8d0c.jpg",
+    title: "Beachfront",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/ee9e2a40-ffac-4db9-9080-b351efc3cfc4.jpg",
+    title: "Tropical",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/ca25c7f3-0d1f-432b-9efa-b9f5dc6d8770.jpg",
+    title: "Camping",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/89faf9ae-bbbc-4bc4-aecd-cc15bf36cbca.jpg",
+    title: "Domes",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg",
+    title: "OMG!",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/732edad8-3ae0-49a8-a451-29a8010dcc0c.jpg",
+    title: "Cabins",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/ddd13204-a5ae-4532-898c-2e595b1bb15f.jpg",
+    title: "Chef's kitchens",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg",
+    title: "Amazing pools",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/1b6a8b70-a3b6-48b5-88e1-2243d9172c06.jpg",
+    title: "Castles",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/3726d94b-534a-42b8-bca0-a0304d912260.jpg",
+    title: "Trending",
+  },
+  {
+    url: "https://a0.muscache.com/pictures/3b1eb541-46d9-4bef-abc4-c37d77e3c21b.jpg",
+    title: "Amazing views",
+  },
+]);
 </script>
 <style>
 .dialog-bottom-transition-enter-active,

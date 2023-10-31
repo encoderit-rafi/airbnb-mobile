@@ -2,7 +2,7 @@
   <div class="rounded-xl">
     <div class="relative">
       <img
-        class="w-full rounded-xl"
+        class="rounded-xl min-h-[257px] object-cover object-center"
         src="https://a0.muscache.com/im/pictures/3965d2da-a7c1-4706-9cf2-1b91a5f3c353.jpg?im_w=720"
       />
       <div class="absolute text-black top-4 right-4">
