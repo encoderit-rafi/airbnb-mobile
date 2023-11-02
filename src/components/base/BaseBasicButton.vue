@@ -1,7 +1,5 @@
 <template>
-  <button
-    class="hover:bg-gray-100 rounded-full border-none outline-none px-3 py-2"
-  >
+  <button class="hover:bg-gray-100 border-none outline-none">
     <slot />
   </button>
 </template>

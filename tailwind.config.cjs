@@ -8,9 +8,9 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        mySpace: ["Space Mono", "monospace"],
-      },
+      // fontFamily: {
+      //   openSans: ["Open Sans", "sans-serif"],
+      // },
     },
   },
   plugins: [require("tw-elements/dist/plugin.cjs")],

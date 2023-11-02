@@ -3,34 +3,34 @@
     <BasePadding class="border">
       <div class="flex items-center justify-between">
         <Logo fill="#ef4444" />
-        <BaseElevatedButton>
-          <div class="w-full h-full flex space-x-4 pl-3 items-center">
-            <span class="font-medium text-sm text-gray-800">Anywhere</span>
-            <span class="w-[1px] h-6 bg-gray-300"></span>
-
-            <span class="font-medium text-sm text-gray-800">Any week</span>
-            <span class="w-[1px] h-6 bg-gray-300"></span>
-            <span class="font-light text-sm text-gray-500">Any guests</span>
-            <span class="bg-[#ef4444] rounded-full p-3"><Search /></span>
-          </div>
-        </BaseElevatedButton>
+        <div class="relative">
+          <div
+            class="absolute -inset-1 rounded-xl bg-gray-500 opacity-20 blur-lg"
+          ></div>
+          <button
+            class="elevated-hover border relative flex space-x-4 pl-3 items-center bg-white divide-x divide-gray-300"
+          >
+            <span class="text-sm bold-text">Anywhere</span>
+            <span class="text-sm bold-text pl-3">Any week</span>
+            <span class="text-sm light-text pl-3">Any guests</span>
+            <div class="bg-[#ef4444] rounded-full p-3"><Search /></div>
+          </button>
+        </div>
         <div class="flex space-x-2 items-center">
-          <BaseBasicButton class="h-full">
-            <span class="font-medium text-sm text-gray-700"
-              >Airbnb your home</span
-            >
-          </BaseBasicButton>
-          <v-btn fab flat icon size="small">
+          <button class="basic-hover px-3 py-2">
+            <span class="text-sm bold-text">Airbnb your home</span>
+          </button>
+          <button class="basic-hover p-2">
             <World />
-          </v-btn>
-          <BaseElevatedButton>
+          </button>
+          <button class="elevated-hover border">
             <div class="flex space-x-3 pl-1 items-center">
               <Menu />
               <v-icon class="text-gray-600" size="large"
                 >mdi-account-circle</v-icon
               >
             </div>
-          </BaseElevatedButton>
+          </button>
         </div>
       </div>
     </BasePadding>
@@ -533,7 +533,8 @@ const dialogSearch = ref(false);
 const notifications = ref(false);
 const sound = ref(true);
 const widgets = ref(false);
-const categories = ref([
+
+const categories = [
   {
     url: "https://a0.muscache.com/pictures/ed8b9e47-609b-44c2-9768-33e6a22eccb2.jpg",
     title: "Iconic cities",
@@ -670,7 +671,7 @@ const categories = ref([
     url: "https://a0.muscache.com/pictures/3b1eb541-46d9-4bef-abc4-c37d77e3c21b.jpg",
     title: "Amazing views",
   },
-]);
+];
 </script>
 <style>
 .dialog-bottom-transition-enter-active,

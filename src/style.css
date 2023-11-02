@@ -1,8 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600&family=Space+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   --animate-delay: 0.1s;
+}
+@layer components {
+  .basic-hover {
+    @apply hover:bg-gray-100  border-none outline-none rounded-full cursor-pointer  transition-all ease-in-out delay-200 hover:delay-150;
+  }
+  .elevated-hover {
+    @apply p-2  rounded-full cursor-pointer hover:shadow-md transition-all ease-in-out delay-200 hover:delay-150;
+  }
+  .bold-text {
+    @apply font-bold text-gray-600;
+  }
+  .light-text {
+    @apply font-light text-gray-400;
+  }
 }
